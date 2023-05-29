@@ -7,7 +7,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("/api/todos")
+      .get("http://localhost:3500/api/todos") // Include the port number in the URL
       .then((res) => {
         setTodos(res.data);
       })
@@ -22,7 +22,7 @@ const App = () => {
     e.preventDefault();
 
     axios
-      .post("/api/todos", { title: newTodo })
+      .post("http://localhost:3500/api/todos", { title: newTodo }) // Include the port number in the URL
       .then(() => {
         setNewTodo("");
         updateTodoList();
@@ -32,7 +32,7 @@ const App = () => {
 
   const handleTodoUpdate = (id, completed) => {
     axios
-      .put(`/api/todos/${id}`, { completed: !completed })
+      .put(`http://localhost:3500/api/todos/${id}`, { completed: !completed }) // Include the port number in the URL
       .then(() => {
         updateTodoList();
       })
@@ -41,7 +41,7 @@ const App = () => {
 
   const handleTodoDelete = (id) => {
     axios
-      .delete(`/api/todos/${id}`)
+      .delete(`http://localhost:3500/api/todos/${id}`) // Include the port number in the URL
       .then(() => {
         updateTodoList();
       })
@@ -50,7 +50,7 @@ const App = () => {
 
   const updateTodoList = () => {
     axios
-      .get("/api/todos")
+      .get("http://localhost:3500/api/todos") // Include the port number in the URL
       .then((res) => {
         setTodos(res.data);
       })
@@ -63,19 +63,19 @@ const App = () => {
 
       <form onSubmit={handleFormSubmit}>
         <input
-          type="text"
+          type='text'
           value={newTodo}
           onChange={handleInputChange}
-          placeholder="Add a new todo"
+          placeholder='Add a new todo'
         />
-        <button type="submit">Add</button>
+        <button type='submit'>Add</button>
       </form>
 
       <ul>
         {todos.map((todo) => (
           <li key={todo._id}>
             <input
-              type="checkbox"
+              type='checkbox'
               checked={todo.completed}
               onChange={() => handleTodoUpdate(todo._id, todo.completed)}
             />
