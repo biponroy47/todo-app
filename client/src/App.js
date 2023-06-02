@@ -65,38 +65,55 @@ const App = () => {
 
   return (
     <Container fluid>
-      <Row className='justify-content-center'>
-        <Col xs={6} className='text-center'>
+      <Row className='justify-content-center my-5'>
+        <Col className='text-center'>
           <h1>To-Do List</h1>
         </Col>
       </Row>
-      <form onSubmit={handleFormSubmit}>
-        <input
-          type='text'
-          value={newTodo}
-          onChange={handleInputChange}
-          placeholder='Add a new todo'
-        />
-        <button type='submit'>Add</button>
-      </form>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo._id}>
+      <Row className='justify-content-center my-3'>
+        <Col className='text-center'>
+          <form onSubmit={handleFormSubmit}>
             <input
-              type='checkbox'
-              checked={todo.completed}
-              onChange={() => handleTodoUpdate(todo._id, todo.completed)}
+              type='text'
+              value={newTodo}
+              onChange={handleInputChange}
+              placeholder='Add a new todo'
             />
-            <span
-              style={{
-                textDecoration: todo.completed ? "line-through" : "none",
-              }}
-            >
-              {todo.title}
-            </span>
-            <button onClick={() => handleTodoDelete(todo._id)}>Delete</button>
-          </li>
-        ))}
+            <button type='submit'>Add</button>
+          </form>
+        </Col>
+      </Row>
+
+      <ul>
+        <Row className='my-5'>
+          {todos.map((todo) => (
+            <li key={todo._id}>
+              <Row className='align-items-center'>
+                <Col>
+                  <input
+                    type='checkbox'
+                    checked={todo.completed}
+                    onChange={() => handleTodoUpdate(todo._id, todo.completed)}
+                  />
+                </Col>
+                <Col>
+                  <span
+                    style={{
+                      textDecoration: todo.completed ? "line-through" : "none",
+                    }}
+                  >
+                    {todo.title}
+                  </span>
+                </Col>
+                <Col>
+                  <button onClick={() => handleTodoDelete(todo._id)}>
+                    Delete
+                  </button>
+                </Col>
+              </Row>
+            </li>
+          ))}
+        </Row>
       </ul>
     </Container>
   );
