@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+//Bootstrap imports
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
@@ -58,9 +64,12 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Todo List</h1>
-
+    <Container fluid>
+      <Row className='justify-content-center'>
+        <Col xs={6} className='text-center'>
+          <h1>To-Do List</h1>
+        </Col>
+      </Row>
       <form onSubmit={handleFormSubmit}>
         <input
           type='text'
@@ -70,7 +79,6 @@ const App = () => {
         />
         <button type='submit'>Add</button>
       </form>
-
       <ul>
         {todos.map((todo) => (
           <li key={todo._id}>
@@ -90,7 +98,7 @@ const App = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 };
 
